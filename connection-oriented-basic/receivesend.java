@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-public class sendreceive
+public class receivesend
 {
 	public static void main(String args[])
 	{
@@ -18,11 +18,14 @@ public class sendreceive
 				int myport=Integer.parseInt(args[2]);
 				String message=args[3];
 				myDatagramSocket mysocket=new myDatagramSocket(myport);
+				mysocket.connect(host,receiverport);
 				for(int i=0;i<10;i++)
 				{
-					mysocket.sendMessage(host,receiverport,message);
 					System.out.println(mysocket.receiveMessage(receiverport));
+					mysocket.sendMessage(host,receiverport,message);
 				}
+				mysocket.disconnect();
+				
 				mysocket.close();
 			}
 			catch(Exception e)
