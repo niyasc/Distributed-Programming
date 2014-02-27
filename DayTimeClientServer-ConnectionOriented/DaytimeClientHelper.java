@@ -1,0 +1,18 @@
+import java.net.*;
+
+public class DaytimeClientHelper{
+	public static String getTimestamp(String host,int port){
+		String timestamp="";
+		try{
+			InetAddress server=InetAddress.getByName(host);
+			MyStreamSocket datasocket=new MyStreamSocket(server,port);
+			timestamp=datasocket.receiveMessage();
+			datasocket.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return timestamp;
+	}
+}
+		
